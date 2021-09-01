@@ -77,6 +77,6 @@ def testDisplay():
 	tft=TFT(spi,2,4,15)
 	tft.init_7735(tft.BLUETAB80x160)
 	tft.fill(TFT.BLACK)
-	tft.text((0, 0), "Hello WeeSing! Hello WeeSing! Hello WeeSing!", TFT.YELLOW, terminalfont)
+	tft.text((0, 0), "The big brown fox jumps over the lazy dog. The big brown fox jumps over the lazy dog!", TFT.YELLOW, terminalfont)
 
 testDisplay()

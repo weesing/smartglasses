@@ -514,7 +514,6 @@ class TFT(object) :
     '''Set screen rotation and RGB/BGR format.'''
     self._writecommand(TFT.MADCTL)
     rgb = TFTRGB if self._rgb else TFTBGR
-    print('Setting MADCTL to ', bytearray([TFTRotations[self.rotate] | rgb]))
     self._writedata(bytearray([TFTRotations[self.rotate] | rgb]))
 
   #@micropython.native
