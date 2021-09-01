@@ -2,8 +2,6 @@ import ubluetooth
 from micropython import const
 import machine, time
 
-bleLED = machine.Pin(2, machine.Pin.OUT)
-
 ble = ubluetooth.BLE()
 while not ble.active():
 	ble.active(True)
@@ -38,8 +36,6 @@ def bt_irq(event, data):
 		for i in range(len(addr)):
 			print(hex(addr[i]), end=':')
 		print('')
-		# switch on BLE LED
-		bleLED.on()
 	elif event == IRQ_CENTRAL_DISCONNECT:
 		conn_handle, addr_type, addr = data
 		print('Central device DISCONNECTED')
@@ -47,17 +43,12 @@ def bt_irq(event, data):
 			print(hex(addr[i]), end=':')
 		advertise()
 		print('')
-		bleLED.off()
 	elif event == IRQ_GATTS_WRITE:
 		# Handle data here
 		conn_handle, attr_handle = data
 		value = ble.gatts_read(attr_handle)
 		strValue = value.decode('utf-8')
 		print('Value -', strValue)
-		# blink LED
-		bleLED.off()
-		time.sleep_ms(100)
-		bleLED.on()
 		print('')
 			
 ble.irq(bt_irq)
@@ -75,3 +66,17 @@ def advertise():
 	ble.gap_advertise(100, adv_encode(0x01, b'\x06') + adv_encode(0x03, b'\x1c\x18') + adv_encode(0x19, b'\xc1\x03') + adv_encode_name('weesing-esp32'))
 
 advertise()
+
+def testDisplay():
+	from st7735s import TFT
+	from terminalfont import terminalfont
+	from machine import SPI,Pin
+
+	spi = SPI(1, baudrate=10000000, polarity=0, phase=0)
+	# dc, rst, cs
+	tft=TFT(spi,2,4,15)
+	tft.init_7735(tft.BLUETAB80x160)
+	tft.fill(TFT.BLACK)
+	tft.text((0, 0), "Hello WeeSing! Hello WeeSing! Hello WeeSing!", TFT.YELLOW, terminalfont)
+
+testDisplay()

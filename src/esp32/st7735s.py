@@ -20,7 +20,7 @@ from math import sqrt
 #60 = 90 right rotation
 #C0 = 180 right rotation
 #A0 = 270 right rotation
-TFTRotations = [0x00, 0x60, 0xC0, 0xA0]
+TFTRotations = [0x00, 0x60, 0xC0, 0x20]
 TFTBGR = 0x08 # for 1.8 and 1.44 inch display
 TFTRGB = 0x00
 
@@ -48,6 +48,7 @@ class TFT(object) :
                               #         if rotation = 2, or 3, start row 3
   GREENTAB80x160  = 0x6 # 80x160 0.96 inch, start col 26, start row 1, bgr, inverted
   REDTAB80x160    = 0x7 # 80x160 0.96 inch, start col 24, start row 0, rgb
+  BLUETAB80x160   = 0x8 # 80x160 0.96 inch, start col 24, start rot 0, rgb
   BLUETAB         = 0xB # 128x160 , start col 2, start row 1, rgb
 
   NOP = 0x0
@@ -122,7 +123,9 @@ class TFT(object) :
     self._offset=(2,3)
     self._rgb = False                   #color order of rgb.
     self.dc  = machine.Pin(aDC, machine.Pin.OUT)
-
+    print('Use reset', aReset)
+    print('Use DC', aDC)
+    print('Use CS', aCS)
     if aReset == None :
         self.useReset = False
     else :
@@ -511,6 +514,7 @@ class TFT(object) :
     '''Set screen rotation and RGB/BGR format.'''
     self._writecommand(TFT.MADCTL)
     rgb = TFTRGB if self._rgb else TFTBGR
+    print('Setting MADCTL to ', bytearray([TFTRotations[self.rotate] | rgb]))
     self._writedata(bytearray([TFTRotations[self.rotate] | rgb]))
 
   #@micropython.native
@@ -701,6 +705,11 @@ class TFT(object) :
             self._offset = (26,1)
             self._rgb = False
             self._writecommand(TFT.INVON)
+        elif self.tabcolor == self.BLUETAB80x160:
+            self._size = (80,160)
+            self._offset = (24,0)
+            self._rgb = True
+            self._writecommand(TFT.INVON)
         elif self.tabcolor == self.REDTAB80x160 :
             self._size = (80,160)
             self._offset = (24,0)
@@ -708,6 +717,8 @@ class TFT(object) :
         # rotate to the same orientation with the Pins on the boards at the top
         if self.tabcolor == self.GREENTAB80x160 or self.tabcolor == self.REDTAB80x160 :
             self.rotation(1)
+        elif self.tabcolor == self.BLUETAB80x160:
+            self.rotation(3)
         else :
             self.rotation(2)
 
