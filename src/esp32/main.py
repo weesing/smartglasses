@@ -1,7 +1,7 @@
 import ubluetooth
 from micropython import const
 import machine
-import time
+import time, math
 
 ble = ubluetooth.BLE()
 while not ble.active():
@@ -80,14 +80,26 @@ def testDisplay():
     from st7735s import TFT
     from sysfont import sysfont
     from machine import SPI, Pin
+    from st7735s import TFTColor
 
-    spi = SPI(1, baudrate=10000000, polarity=0, phase=0)
+    spi = SPI(1, baudrate=100000000, polarity=0, phase=0)
     # dc, rst, cs
     tft = TFT(spi, 2, 4, 15)
     tft.init_7735(tft.BLUETAB80x160)
     tft.fill(TFT.BLACK)
-    tft.text((0, 0), "The big brown fox jumps over the lazy dog. The big brown fox jumps over the lazy dog!",
-             TFT.YELLOW, sysfont)
+    # tft.text((0, 0), "The big brown fox jumps over the lazy dog. The big brown fox jumps over the lazy dog!",
+    #          TFT.YELLOW, sysfont)
+    tileWidth = 4
+    tileHeight = 4
+    from random import random
+    for y in range(0, 80 - tileHeight, tileHeight):
+      for x in range(0, 160 - tileWidth, tileWidth):
+        r = int(random() * 0xff)
+        g = int(random() * 0xff)
+        b = int(random() * 0xff)
+        print('Fill rect at ', (x, y), 'with color', hex(r), hex(g), hex(b))
+        tft.fillrect((x, y), (tileWidth, tileHeight), TFTColor(r, g, b))
+
 
 
 testDisplay()
