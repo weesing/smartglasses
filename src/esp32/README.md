@@ -22,5 +22,5 @@
 | `boot.py` | Bootstrap code. Connection to Wifi. See `wifi_cfg.sample.py`
 | `wifi_cfg.sample.py` | A sample source file containing Wifi configuration. Should rename this to `wifi_cfg.py`
 | `main.py` | The main entry point.
-| `terminalfont.py` | Font file for displaying text on screen (credits: https://github.com/GuyCarver/MicroPython/tree/master/esp8266)
+| `sysfont.py` | Font file for displaying text on screen (credits: https://github.com/GuyCarver/MicroPython/tree/master/esp8266)
 | `st7735s.py` | ST7735S display driver. Adapted from repository https://github.com/cheungbx/st7735-esp8266-micropython

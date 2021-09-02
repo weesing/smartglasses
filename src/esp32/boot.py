@@ -1,6 +1,7 @@
 # This is script that run when device boot up or wake from sleep.
 
-import network, time
+import network
+import time
 from wifi_cfg import WIFI_SSID, WIFI_PASSWORD
 
 wifi = network.WLAN(network.STA_IF)
