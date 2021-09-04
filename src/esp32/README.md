@@ -1,4 +1,4 @@
-# Smartglasses ESP32 Software
+# ESP32 Software for ESP32 with Micropython
 
 * Uses SPI TFT Color Display 80x160 pixels (ST7735S) (Blue Board)
 

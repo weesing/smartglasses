@@ -1,4 +1,6 @@
-# Pin Assignment
+# Arduino Nano BLE Software
+
+## Pin Assignment
 | ST7735S | Arduino Nano BLE
 | -- | --
 | VCC | 5v
