@@ -21,6 +21,7 @@
 - Parsing of JSON (communication data format) is easier in Micropython/Python with readily built libraries. Since JSON is more verbose, ESP32's configurable data packet size (_see above_) has an advantage.
 - ESP32 has wireless which opens other possibilities for integration with other devices for more info display on the smart glasses.
 - Physical dimensions of ESP32 is twice of Arduino BLE Nano in terms of width, which will make the final design a little bit more bulky.
+- Arduino IDE programming for ESP32 seems to be a best candidate after considering the above.
 
 # TODO
 
