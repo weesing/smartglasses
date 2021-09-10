@@ -5,9 +5,17 @@
 
 #define ESP32
 #ifdef ESP32
+
 #define TFT_CS 15
 #define TFT_RST 4
 #define TFT_DC 2
+#include <BLEDevice.h>
+#include <BLEUtils.h>
+#include <BLEServer.h>
+
+#define SERVICE_UUID "4fafc201-1fb5-459e-8fcc-c5c9c331914b"
+#define CHARACTERISTIC_UUID "beb5483e-36e1-4688-b7f5-ea07361b26a8"
+
 #else
 // For the breakout board, you can use any 2 or 3 pins.
 // These pins will also work for the 1.8" TFT shield.
@@ -27,11 +35,36 @@ void displaySetup()
   // tft.setSPISpeed(100000000);
 }
 
+void bleSetup()
+{
+#ifdef ESP32
+  Serial.println("Starting BLE work!");
+
+  BLEDevice::init("ESP32 Smart Glasses");
+  BLEServer *pServer = BLEDevice::createServer();
+  BLEService *pService = pServer->createService(SERVICE_UUID);
+  BLECharacteristic *pCharacteristic = pService->createCharacteristic(
+      CHARACTERISTIC_UUID,
+      BLECharacteristic::PROPERTY_READ | BLECharacteristic::PROPERTY_WRITE | BLECharacteristic::PROPERTY_NOTIFY);
+
+  pCharacteristic->setValue("Initialized");
+  pService->start();
+  BLEAdvertising *pAdvertising = BLEDevice::getAdvertising();
+  pAdvertising->addServiceUUID(SERVICE_UUID);
+  pAdvertising->setScanResponse(true);
+  pAdvertising->setMinPreferred(0x06); // functions that help with iPhone connections issue
+  pAdvertising->setMinPreferred(0x12);
+  BLEDevice::startAdvertising();
+  Serial.println("Characteristic defined! Now you can read it in your phone!");
+#endif
+}
+
 void setup(void)
 {
   Serial.begin(9600);
 
   displaySetup();
+  bleSetup();
 
   uint16_t time = millis();
   time = millis() - time;
