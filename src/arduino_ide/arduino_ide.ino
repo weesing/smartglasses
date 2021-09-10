@@ -41,20 +41,26 @@ void bleSetup()
   Serial.println("Starting BLE work!");
 
   BLEDevice::init("ESP32 Smart Glasses");
+  // Create server
   BLEServer *pServer = BLEDevice::createServer();
+  // Create service
   BLEService *pService = pServer->createService(SERVICE_UUID);
+  // Create characteristic
   gp_Characteristics = pService->createCharacteristic(
       CHARACTERISTIC_UUID,
       BLECharacteristic::PROPERTY_READ | BLECharacteristic::PROPERTY_WRITE | BLECharacteristic::PROPERTY_NOTIFY);
 
+  // Set initial value and start service
   gp_Characteristics->setValue("Initialized");
   pService->start();
+
+  // Advertising service
   BLEAdvertising *pAdvertising = BLEDevice::getAdvertising();
   pAdvertising->addServiceUUID(SERVICE_UUID);
   pAdvertising->setScanResponse(true);
-  pAdvertising->setMinPreferred(0x06); // functions that help with iPhone connections issue
-  pAdvertising->setMinPreferred(0x12);
+  pAdvertising->setMinPreferred(0x06);
   BLEDevice::startAdvertising();
+
   Serial.println("Characteristic defined! Now you can read it in your phone!");
 #endif
 }
