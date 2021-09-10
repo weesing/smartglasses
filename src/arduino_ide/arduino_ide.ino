@@ -5,19 +5,15 @@
 
 #define ESP32
 #ifdef ESP32
-
 #define TFT_CS 15
 #define TFT_RST 4
 #define TFT_DC 2
 #include <BLEDevice.h>
 #include <BLEUtils.h>
 #include <BLEServer.h>
-
 #define SERVICE_UUID "4fafc201-1fb5-459e-8fcc-c5c9c331914b"
 #define CHARACTERISTIC_UUID "beb5483e-36e1-4688-b7f5-ea07361b26a8"
-
 BLECharacteristic *gp_Characteristics = NULL;
-
 #else
 // For the breakout board, you can use any 2 or 3 pins.
 // These pins will also work for the 1.8" TFT shield.
@@ -25,6 +21,8 @@ BLECharacteristic *gp_Characteristics = NULL;
 #define TFT_RST 8 // Or set to -1 and connect to Arduino RESET pin
 #define TFT_DC 9
 #endif
+
+// #define TEST_DISPLAY
 
 Adafruit_ST7735 tft = Adafruit_ST7735(TFT_CS, TFT_DC, TFT_RST);
 
@@ -71,8 +69,6 @@ void setup(void)
   uint16_t time = millis();
   time = millis() - time;
 }
-
-// #define TEST_DISPLAY
 
 #ifdef TEST_DISPLAY
 void testPrintText()
