@@ -59,7 +59,7 @@ class CharacteristicCallbacks : public BLECharacteristicCallbacks
     // Test if parsing succeeds.
     if (error)
     {
-      Serial.print(F("deserializeJson() failed: "));
+      displayMessage(F("System"), F("deserializeJson() failed"));
       Serial.println(error.f_str());
     }
     else
@@ -75,7 +75,7 @@ class CharacteristicCallbacks : public BLECharacteristicCallbacks
           displayMessage(title, content);
           break;
         default:
-          Serial.println(F("Unknown message type encountered. Aborting display."));
+          displayMessage(F("System"), F("Unknown message type encountered. Aborting display."));
           break;
         }
       }
