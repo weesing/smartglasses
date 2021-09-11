@@ -27,6 +27,8 @@ BLECharacteristic *gp_Characteristics = NULL;
 
 Adafruit_ST7735 tft = Adafruit_ST7735(TFT_CS, TFT_DC, TFT_RST);
 
+#define MSG_TYPE_TEXT 1
+
 void displaySetup()
 {
   tft.initR(INITR_MINI160x80); // Init ST7735S mini display
@@ -67,7 +69,15 @@ class CharacteristicCallbacks : public BLECharacteristicCallbacks
       String content = doc["content"];
       if (type != NULL)
       {
-        displayMessage(title, content);
+        switch (type)
+        {
+        case MSG_TYPE_TEXT:
+          displayMessage(title, content);
+          break;
+        default:
+          Serial.println(F("Unknown message type encountered. Aborting display."));
+          break;
+        }
       }
       else
       {
