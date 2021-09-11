@@ -161,12 +161,7 @@ void displayLoop()
 #endif // #ifdef TEST_DISPLAY
 }
 
-void bleLoop()
-{
-}
-
 void loop()
 {
   displayLoop();
-  bleLoop();
 }
