@@ -35,6 +35,30 @@ void displaySetup()
   // tft.setSPISpeed(100000000);
 }
 
+#ifdef ESP32
+class CharacteristicCallbacks : public BLECharacteristicCallbacks
+{
+  void onRead(BLECharacteristic *pCharacteristic) {}
+
+  void onWrite(BLECharacteristic *pCharacteristic)
+  {
+    Serial.println("On Write");
+    String buffer = String(pCharacteristic->getValue().c_str());
+    Serial.println(buffer);
+    // TODO: Process buffer from JSON string in buffer
+    pCharacteristic->setValue("");
+    delay(200);
+  }
+
+  void onNotify(BLECharacteristic *pCharacteristic)
+  {
+    Serial.println("On Notify");
+  }
+
+  void onStatus(BLECharacteristic *pCharacteristic, Status s, uint32_t code) {}
+};
+#endif // #ifdef ESP32
+
 void bleSetup()
 {
 #ifdef ESP32
@@ -51,7 +75,12 @@ void bleSetup()
       BLECharacteristic::PROPERTY_READ | BLECharacteristic::PROPERTY_WRITE | BLECharacteristic::PROPERTY_NOTIFY);
 
   // Set initial value and start service
-  gp_Characteristics->setValue("Initialized");
+  gp_Characteristics->setValue("");
+
+  // Set the callbacks to the characteristics
+  CharacteristicCallbacks *pCallbacks = new CharacteristicCallbacks();
+  gp_Characteristics->setCallbacks(pCallbacks);
+
   pService->start();
 
   // Advertising service
@@ -62,7 +91,7 @@ void bleSetup()
   BLEDevice::startAdvertising();
 
   Serial.println("Characteristic defined! Now you can read it in your phone!");
-#endif
+#endif // #ifdef ESP32
 }
 
 void setup(void)
@@ -122,23 +151,18 @@ void testPrintTiles()
   delay(2000);
 }
 
-#endif
+#endif // #ifdef TEST_DISPLAY
 
 void displayLoop()
 {
 #ifdef TEST_DISPLAY
   testPrintText();
   testPrintTiles();
-#endif
+#endif // #ifdef TEST_DISPLAY
 }
 
 void bleLoop()
 {
-#ifdef ESP32
-  const char *buffer = gp_Characteristics->getValue().c_str();
-  Serial.println(buffer);
-  delay(1000);
-#endif
 }
 
 void loop()
