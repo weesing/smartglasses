@@ -2,6 +2,7 @@
 #include <Adafruit_ST7735.h> // Hardware-specific library for ST7735
 #include <Adafruit_ST7789.h> // Hardware-specific library for ST7789
 #include <SPI.h>
+#include <ArduinoJson.h>
 
 #define ESP32
 #ifdef ESP32
@@ -31,7 +32,7 @@ void displaySetup()
   tft.initR(INITR_MINI160x80); // Init ST7735S mini display
   tft.setRotation(1);
   tft.invertDisplay(true);
-  tft.fillScreen(ST77XX_BLACK);
+  tft.fillScreen(ST7735_BLACK);
   // tft.setSPISpeed(100000000);
 }
 
@@ -44,9 +45,36 @@ class CharacteristicCallbacks : public BLECharacteristicCallbacks
   {
     Serial.println("On Write");
     String buffer = String(pCharacteristic->getValue().c_str());
+
     Serial.println(buffer);
     // TODO: Process buffer from JSON string in buffer
     pCharacteristic->setValue("");
+
+    StaticJsonDocument<200> doc;
+    // Deserialize the JSON document
+    DeserializationError error = deserializeJson(doc, buffer);
+
+    // Test if parsing succeeds.
+    if (error)
+    {
+      Serial.print(F("deserializeJson() failed: "));
+      Serial.println(error.f_str());
+    }
+    else
+    {
+      uint32_t type = doc["type"];
+      String title = doc["title"];
+      String content = doc["content"];
+      if (type != NULL)
+      {
+        displayMessage(title, content);
+      }
+      else
+      {
+        Serial.println(F("Unknown message type. Aborting parsing."));
+      }
+    }
+
     delay(200);
   }
 
@@ -58,6 +86,20 @@ class CharacteristicCallbacks : public BLECharacteristicCallbacks
   void onStatus(BLECharacteristic *pCharacteristic, Status s, uint32_t code) {}
 };
 #endif // #ifdef ESP32
+
+void displayMessage(const String title, const String content)
+{
+  Serial.println(title);
+  Serial.println(content);
+  tft.fillScreen(ST7735_BLACK);
+  tft.setCursor(0, 0);
+  tft.setTextColor(ST7735_YELLOW);
+  tft.setTextWrap(true);
+  tft.print(title.c_str());
+  tft.setCursor(0, 20);
+  tft.setTextColor(ST7735_WHITE);
+  tft.print(content.c_str());
+}
 
 void bleSetup()
 {
