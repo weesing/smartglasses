@@ -4,7 +4,9 @@
 #include <SPI.h>
 #include <ArduinoJson.h>
 
+// Uncomment the following for ESP32
 #define ESP32
+
 #ifdef ESP32
 #define TFT_CS 15
 #define TFT_RST 4
