@@ -1,0 +1,14 @@
+[Unit]
+Description=ST7735S 0.96in framebuffer display service
+After=rc-local.service
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=5
+User=pi
+WorkingDirectory=/home/pi/smartglasses/src/rpi
+ExecStart=bash run.sh
+
+[Install]
+WantedBy=multi-user.target
