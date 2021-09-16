@@ -9,6 +9,9 @@
 | src | Contains source code for Arduino IDE based programming (suitable for Arduinos and ESP32) and Raspberry Pi.
 | design | The design files used for producing the STLs. The current software used for design is Microsoft 3D Builder.
 
+# Basic design
+<img src="basic_design.jpg" style="width:400px">
+
 # Showcase
 ## Initial prototype with Arduino BLE Nano
 <ul>
