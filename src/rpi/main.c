@@ -158,6 +158,11 @@ int main()
             p = fb2;
             // 32 bits to 16 bits
             uint8_t *pPixel = (uint8_t *)fbp;
+            uint8_t xscale = vinfo.xres / SCR_WIDTH;
+            uint8_t yscale = vinfo.yres / SCR_HEIGHT;
+#ifdef debug
+            printf("Calculated screen scaling X:%.2f, Y:%.2f\n", 1 / xscale, 1 / yscale);
+#endif // #ifdef debug
             for (uint16_t row = 0; row < SCR_HEIGHT; ++row)
             {
                   for (uint16_t col = 0; col < SCR_WIDTH; ++col)
@@ -169,8 +174,9 @@ int main()
                         uint8_t r = *pPixel;
                         pPixel += 2; // + alpha
                         *p = RGB565(r, g, b);
-                        ++p;
+                        p += xscale;
                   }
+                  p += SCR_WIDTH * (yscale - 1);
             }
 
             munmap(fbp, screensize);
