@@ -11,16 +11,32 @@
 
 # Showcase
 ## Initial prototype with Arduino BLE Nano
-- Design with Arduino BLE Nano MCU and 0.49" OLED (monochrome) screen.<br/>
-<img src="showcase_2.jpg" style="width:200px">
-<img src="showcase_3.jpg" style="width:200px">
-- Code can be found in the sub-folder `src/arduino_ide`<br/>
+<ul>
+<li>Design with Arduino BLE Nano MCU and 0.49" OLED (monochrome) screen.
+  <div class="row">
+    <div class="col-md-12">
+    <img src="showcase_2.jpg" style="width:200px">
+    <img src="showcase_3.jpg" style="width:200px">
+    </div>
+  </div>
+</li>
+<li>Code can be found in the sub-folder `src/arduino_ide`</li>
+</ul>
 
 ## Raspberry Pi Zero W console on the 0.96" TFT SPI display.
-- Displaying framebuffer of Raspbian Terminal on the display.<br/>
-<img src="demo.gif" style="width:400px"><br/>
-<img src="rpi_showcase_1.jpg" style="width:200px">
-<img src="rpi_showcase_2.jpg" style="width:200px"><br/>
-<img src="rpi_showcase_3.jpg" style="width:400px"><br/>
-- Code can be found in the folder `src/rpi`<br/>
-
+<ul>
+<li>Displaying framebuffer of Raspbian Terminal on the display.</li>
+  <div class="row">
+    <div class="col-md-12">
+    <img src="demo.gif" style="width:400px">
+    </div>
+    <div class="col-md-12">
+    <img src="rpi_showcase_1.jpg" style="width:200px">
+    <img src="rpi_showcase_2.jpg" style="width:200px">
+    </div>
+    <div class="col-md-12">
+    <img src="rpi_showcase_3.jpg" style="width:400px">
+    </div>
+  </div>
+<li>Code can be found in the folder `src/rpi`</li>
+</ul>
