@@ -17,7 +17,7 @@
 - Code can be found in the sub-folder `src/arduino_ide`<br/>
 
 ## Raspberry Pi Zero W console on the 0.96" TFT SPI display.
-- Displaying framebuffer of Raspbian Terminal on the display.
+- Displaying framebuffer of Raspbian Terminal on the display.<br/>
 <img src="demo.gif" style="width:400px"><br/>
 <img src="rpi_showcase_1.jpg" style="width:200px">
 <img src="rpi_showcase_2.jpg" style="width:200px"><br/>
