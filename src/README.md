@@ -11,11 +11,13 @@
 | Folder           | Description
 | -- | --
 | arduino_ide | Contains the sketch for using an Arduino BLE Nano MCU or ESP32 to connect to SPI ST7735S TFT (0.96" 80x160) display using the Arduino IDE
+| micropython (to be deprecated) | Contains the Python code running MicroPython on the ESP32. This will be deprecated soon due to bad performance.
 | rpi            | Contains the software for mirroring Raspberry Pi framebuffer to the ST7735S TFT display.
 
 # Findings Arduino BLE Nano/ESP32
 - Arduino containing the compiled software updates the screen faster.
-- ESP32 with Micropython is easier to develop due to the nature of scripting language (Python). BLE is also easier to configure and program (Arduino BLE programming requires more manual steps)
+- ESP32 with Micropython is easier to develop due to the nature of scripting language (Python). BLE is also easier to configure and program (Arduino BLE programming requires more manual steps).
+- Despite the ease of programming, MicroPython is bad in terms of performance due to the **interpreted** nature of the platform.
 - Arduino BLE reception is limited to 20 bytes per packet (unable to configure so far), whereas ESP32 BLE allows configuration of the length of the packet size.
 - Parsing of JSON (communication data format) is easier in Micropython/Python with readily built libraries. Since JSON is more verbose, ESP32's configurable data packet size (_see above_) has an advantage.
 - ESP32 has wireless which opens other possibilities for integration with other devices for more info display on the smart glasses.
