@@ -26,7 +26,7 @@
 - Arduino IDE programming for ESP32 seems to be a best candidate after considering the above.
 
 # Findings for Raspberry Pi Zero W
-- Display is very tiny for displaying even the console.
+- Display is very tiny for displaying even the console (still barely usable though).
 - There are more possibilities (such as running a full blown API server) on a Raspberry Pi.
 - The physical footprint between ESP32 and RPi Zero W is quite similar, but given the extensibility of a full-blown computer, the RPi Zero W option seems to be much better.
 
