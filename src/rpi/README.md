@@ -23,7 +23,7 @@ Source code originated & modified from the following repositories:
 - If you have freshly setup your Pi, you may be booting into the GUI desktop.
 - The GUI desktop is not suitable for display on such a small screen. Therefore, it would be better to start your Pi into console instead 
 > Note: You can configure your Pi to start in console/terminal mode through `raspi-config` or simply the `Preferences` menu in the GUI desktop).
-- Enable SPI interface from `raspi-config` or `Preferences menu in the GUI desktop.
+- Enable SPI interface from `raspi-config` or `Preferences` menu in the GUI desktop.
 
 
 # How to run
