@@ -18,6 +18,9 @@
 
 ## Raspberry Pi Zero W console on the 0.96" TFT SPI display.
 - Displaying framebuffer of Raspbian Terminal on the display.
-<img src="demo.gif">
+<img src="demo.gif" style="width:400px"><br/>
+<img src="rpi_showcase_1.jpg" style="width:200px">
+<img src="rpi_showcase_2.jpg" style="width:200px">
+<img src="rpi_showcase_3.jpg" style="width:400px">
 - Code can be found in the folder `src/rpi`<br/>
 
