@@ -56,9 +56,24 @@ sudo reboot now
 ```
 
 # Screenshots
-<img src="demo_screenshot_1.jpg" alt="drawing" style="width:400px;"/>
-<img src="demo_screenshot_2.jpg" alt="drawing" style="width:400px;"/>
+<div class="col-md-6">
+<img src="demo_screenshot_1.jpg" style="width:200px;"/>
+</div>
+<div class="col-md-6">
+<img src="demo_screenshot_2.jpg" style="width:200px;"/>
+</div>
+<div class="col-md-12">
+This is the terminal in action!
+</div>
+<div class="col-md-12">
 <img src="demo.gif">
+</div>
+<div class="col-md-12">
+This is a demo running the GUI desktop (Spoiler: Unusable!)
+</div>
+<div class="col-md-12">
+<img src="startx_demo.gif">
+</div>
 
 # References
 - Guide - https://learn.adafruit.com/1-8-tft-display/python-wiring-and-setup
