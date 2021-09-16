@@ -11,7 +11,7 @@ Source code originated & modified from the following repositories:
 *Note: We are using SPI0 channel.*
 | ST7355S | Raspberry Pi Zero W
 | -- | --
-| VCC | 3v
+| VCC | 3.3v
 | GND | GND
 | SCL | SLCK (GPIO 11)
 | SDA | MOSI (GPIO 10)
