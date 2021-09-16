@@ -42,7 +42,7 @@ framebuffer_height=80
 ## Auto-run script when startup
 - There is a systemd service in the project folder named `st7735s.service.sample`.
 - Make a copy of this file into `st7735s.service`.
-- Open the file and edit the field `WorkdingDirectory` to where this project folder is (where `run.sh` script resides) if necessary.
+- Open the file and edit the field `WorkingDirectory` to where this project folder is (where `run.sh` script resides) if necessary.
 - Make sure you have root access, and copy `st7735s.service` to the folder `/etc/systemd/system`.
 - Run the commands:
 ```
