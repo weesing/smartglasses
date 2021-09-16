@@ -66,7 +66,7 @@ sudo reboot now
 This is the terminal in action!
 </div>
 <div class="col-md-12">
-<img src="demo.gif">
+<img src="terminus_font_demo.gif">
 </div>
 <div class="col-md-12">
 This is a demo running the GUI desktop (Spoiler: Unusable!)
