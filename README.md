@@ -20,7 +20,7 @@
     </div>
   </div>
 </li>
-<li>Code can be found in the sub-folder `src/arduino_ide`</li>
+<li>Code can be found in the sub-folder <code>src/arduino_ide</code></li>
 </ul>
 
 ## Raspberry Pi Zero W console on the 0.96" TFT SPI display.
@@ -38,5 +38,5 @@
     <img src="rpi_showcase_3.jpg" style="width:400px">
     </div>
   </div>
-<li>Code can be found in the folder `src/rpi`</li>
+<li>Code can be found in the folder <code>src/rpi</code></li>
 </ul>
