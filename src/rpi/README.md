@@ -22,8 +22,8 @@ Source code originated & modified from the following repositories:
 # Before you run
 - If you have freshly setup your Pi, you may be booting into the GUI desktop.
 - The GUI desktop is not suitable for display on such a small screen. Therefore, it would be better to start your Pi into console instead 
-
 > Note: You can configure your Pi to start in console/terminal mode through `raspi-config` or simply the `Preferences` menu in the GUI desktop).
+- Enable SPI interface from `raspi-config` or `Preferences menu in the GUI desktop.
 
 
 # How to run
@@ -62,7 +62,6 @@ sudo reboot now
 
 # References
 - Guide - https://learn.adafruit.com/1-8-tft-display/python-wiring-and-setup
-- Python Library - https://github.com/adafruit/Adafruit_CircuitPython_RGB_Display
 
 # Improvements
 - To use pixel interpolation to translate higher resolution framebuffer to 160x80 resolution.
