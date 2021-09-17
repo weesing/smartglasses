@@ -204,7 +204,6 @@ void testPrintTiles()
   }
   delay(2000);
 }
-
 #endif // #ifdef TEST_DISPLAY
 
 void displayLoop()
