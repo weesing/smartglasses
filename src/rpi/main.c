@@ -161,7 +161,7 @@ int main()
             uint8_t xscale = vinfo.xres / SCR_WIDTH;
             uint8_t yscale = vinfo.yres / SCR_HEIGHT;
 #ifdef debug
-            printf("Calculated screen scaling X:%.2f, Y:%.2f\n", xscale, yscale);
+            printf("Original: W:%d : H%d, LCD: W:%s : H:%d, Calculated screen scaling X:%.2f, Y:%.2f\n", vinfo.xres, vinfo.yres, SCR_WIDTH, SCR_HEIGHT, xscale, yscale);
 #endif // #ifdef debug
             for (uint16_t row = 0; row < SCR_HEIGHT; ++row)
             {
