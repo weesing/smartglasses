@@ -37,7 +37,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>*/
 #include "gpio.h"
 #include <endian.h>
 
-#define debug
+// #define debug
 // #define TEST_FILL
 #define SCR_WIDTH 160
 #define SCR_HEIGHT 80
@@ -158,13 +158,9 @@ int main()
             p = fb2;
             // 32 bits to 16 bits
             uint8_t *pPixel = (uint8_t *)fbp;
-            uint8_t xscale = vinfo.xres / SCR_WIDTH;
-            uint8_t yscale = vinfo.yres / SCR_HEIGHT;
-#ifdef debug
-            printf("Original: W:%d : H%d, LCD: W:%s : H:%d, Calculated screen scaling X:%.2f, Y:%.2f\n", vinfo.xres, vinfo.yres, SCR_WIDTH, SCR_HEIGHT, xscale, yscale);
-#endif // #ifdef debug
             for (uint16_t row = 0; row < SCR_HEIGHT; ++row)
             {
+                  uint16_t* rowStart = p;
                   for (uint16_t col = 0; col < SCR_WIDTH; ++col)
                   {
                         uint8_t b = *pPixel;
@@ -174,9 +170,8 @@ int main()
                         uint8_t r = *pPixel;
                         pPixel += 2; // + alpha
                         *p = RGB565(r, g, b);
-                        p += xscale;
+			++p;
                   }
-                  p += SCR_WIDTH * (yscale - 1);
             }
 
             munmap(fbp, screensize);
