@@ -37,7 +37,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>*/
 #include "gpio.h"
 #include <endian.h>
 
-#define debug
+// #define debug
 // #define TEST_FILL
 #define SCR_WIDTH 160
 #define SCR_HEIGHT 80
@@ -160,6 +160,7 @@ int main()
             uint8_t *pPixel = (uint8_t *)fbp;
             for (uint16_t row = 0; row < SCR_HEIGHT; ++row)
             {
+                  uint16_t* rowStart = p;
                   for (uint16_t col = 0; col < SCR_WIDTH; ++col)
                   {
                         uint8_t b = *pPixel;
@@ -169,7 +170,7 @@ int main()
                         uint8_t r = *pPixel;
                         pPixel += 2; // + alpha
                         *p = RGB565(r, g, b);
-                        ++p;
+			++p;
                   }
             }
 
