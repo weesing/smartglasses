@@ -141,6 +141,8 @@ void initCommands(void)
         printf("Setting %d arguments for command 0x%x\n", args, init_cmd[i + 1]);
 
         SPI_Transmit(args, &init_cmd[i + 1]);
+
+        usleep(200000);
     }
 }
 
