@@ -142,7 +142,7 @@ void initCommands(void)
 
         SPI_Transmit(args, &init_cmd[i + 1]);
 
-        usleep(200000);
+        usleep(100000);
     }
 }
 
