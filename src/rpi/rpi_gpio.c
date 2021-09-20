@@ -19,7 +19,6 @@ This program is distributed in the hope that it will be useful,
 		 You should have received a copy of the GNU General Public License
 		 along with this program.  If not, see <http://www.gnu.org/licenses/>*/
 
-#include "gpio.h"
 #include <unistd.h>
 #include <sys/mman.h>
 #include <stdio.h>
@@ -27,10 +26,11 @@ This program is distributed in the hope that it will be useful,
 #include <fcntl.h>
 #include <stdlib.h>
 #include <stdint.h>
+#include "rpi_gpio.h"
 
 volatile unsigned int *gpio = MAP_FAILED;
 
-void gpio_mode_output(unsigned pin)
+void gpio_mode_output(unsigned int pin)
 {
 	int x;
 
