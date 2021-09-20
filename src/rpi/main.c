@@ -115,6 +115,7 @@ int main()
   int xx = 0;
   int yy = 0;
 
+  Delay(2000);
 
   fbfd = open("/dev/fb0", O_RDWR);
 
