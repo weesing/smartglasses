@@ -136,14 +136,14 @@ void initCommands(void)
 
     for (uint16_t i = 0; i < sizeof(init_cmd); i += args + 1)
     {
-        // Some interval is required between commands + data sent.
-        Delay(500);
-
         args = init_cmd[i];
 
         printf("Setting %d arguments for command 0x%x\n", args, init_cmd[i + 1]);
 
         SPI_Transmit(args, &init_cmd[i + 1]);
+
+        // Some interval is required between commands + data sent.
+        Delay(500);
     }
 }
 
