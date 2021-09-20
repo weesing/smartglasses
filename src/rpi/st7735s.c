@@ -136,14 +136,14 @@ void initCommands(void)
 
     for (uint16_t i = 0; i < sizeof(init_cmd); i += args + 1)
     {
+        // Some interval is required between commands + data sent.
+        usleep(100000);
+
         args = init_cmd[i];
 
         printf("Setting %d arguments for command 0x%x\n", args, init_cmd[i + 1]);
 
         SPI_Transmit(args, &init_cmd[i + 1]);
-
-        // Some interval is required between commands + data sent.
-        usleep(100000);
     }
 }
 
@@ -271,6 +271,9 @@ void ST7735S_Init(void)
     initCommands();
 
     Pin_CS_High();
+
+    Delay(1);
+
     printf("ST7735S initialization completed\n");
 }
 
