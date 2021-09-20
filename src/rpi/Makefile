@@ -1,9 +1,11 @@
 CC=gcc
 CFLAGS=-c -std=c99 -O3 -I ./
 LDFLAGS=
-SOURCES=main.c st7735.c gpio.c spi.c
+SOURCES=st7735s_compat.c st7735s.c rpi_gpio.c rpi_spi.c fonts.c gfx.c
 OBJECTS=$(patsubst %.c, %.o, $(wildcard *.c))
+$(info $(OBJECTS))
 HEADERS = $(wildcard *.h)
+$(info $(HEADERS))
 TARGET=lcd
 
 all: $(TARGET)
@@ -11,9 +13,9 @@ all: $(TARGET)
 
 
 %.o:%.c $(HEADERS)
-	@echo "CC $@"
+	@echo "Object CC $@"
 	@$(CC) $(CFLAGS) -c $< -o $@
-
+	
 .PRECIOUS: $(TARGET) $(OBJECTS)
 
 $(TARGET): $(OBJECTS)
@@ -26,10 +28,3 @@ clean:
 	@-rm -f *.o
 	@echo "[RM]	$(TARGET)"
 	@-rm -f $(TARGET)
-
-run:
-	sudo ./lcd &
-	sudo fbset -xres 160 -yres 120 -vxres 160 -vyres 120 -depth 16
-	sudo pkill lcd
-	sudo ./lcd &
-

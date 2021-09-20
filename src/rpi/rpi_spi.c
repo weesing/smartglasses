@@ -102,5 +102,6 @@ int spi_init(int channel, int speed, int mode)
 	if (ioctl(fd, SPI_IOC_WR_MAX_SPEED_HZ, &speed) < 0)
 		printf("SPI SPEED change failure\n");
 
+	printf("SPI Device=0x%x\n", fd);
 	return fd;
 }

@@ -5,3 +5,4 @@ do
 	sleep 1
 	sudo ./lcd
 done
+
