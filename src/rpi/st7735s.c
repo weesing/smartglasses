@@ -142,6 +142,7 @@ void initCommands(void)
 
         SPI_Transmit(args, &init_cmd[i + 1]);
 
+        // Some interval is required between commands + data sent.
         usleep(100000);
     }
 }
