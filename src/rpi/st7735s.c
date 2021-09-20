@@ -137,7 +137,7 @@ void initCommands(void)
     for (uint16_t i = 0; i < sizeof(init_cmd); i += args + 1)
     {
         // Some interval is required between commands + data sent.
-        usleep(100000);
+        Delay(500);
 
         args = init_cmd[i];
 
